@@ -1,0 +1,354 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+html, 
+body {
+    font-size: 24px;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Oswald', sans-serif;
+    
+}
+
+.heading {
+    text-align: center;
+    font-size: 150%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.Maze-container {
+    display: inline-flex;
+    height: 80vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-end;
+    width: 650px;
+    margin-left: 26.6%;
+    margin-top: 10px;
+    
+}
+
+.box {
+    display: flex;
+    width: 100px;
+    height: 80px;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    background-color: rgb(150, 154, 158);
+    
+}
+
+
+.box1 img {
+    visibility: unset !important;
+}
+
+
+.box36 {
+    background-image: url(../images/Finishflag.jpg);
+    background-position: center;
+    background-size: 90px;
+}
+
+
+.borderRight { border-right: black 2.5px solid; }
+.borderLeft { border-left: black 2.5px solid; }
+.borderBottom { border-bottom: black 2.5px solid; }
+.borderTop { border-top: black 2.5px solid; }
+
+.borderRightBig { border-right: black 6px solid; }
+.borderLeftBig { border-left: black 6px solid; }
+.borderBottomBig { border-bottom: black 6px solid; }
+.borderTopBig { border-top: black 6px solid; }
+
+
+
+/*CHARACTER SELECT AND NAME INPUT*/
+
+.container {
+    display: flex;
+    display: -webkit-flex;
+    display: -o-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 95px;
+    left: 1px;
+    
+}
+
+
+.users-input {
+    position: absolute;
+    bottom: 0;
+    border: solid black;
+    height: 350px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.829);
+    border-radius: 5px;
+    /* visibility: hidden; */
+    
+
+}
+
+.character-select  {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+
+
+}
+
+
+.character-img,
+.character-img-box  {
+    justify-content: center;    
+    align-content: center;
+    position: absolute;
+
+}
+
+.trump {
+    height: 120px;
+    width: 100px;
+    top: 150px;
+}   
+
+.boris {
+    height: 10  0px;
+    width: 90px;
+    justify-content: center;    
+    align-content: center;
+    position: absolute;
+    top: 150px;
+    right: 100px;
+}
+
+.character-box {
+    height: 65px;
+    width: 70px;
+    justify-content: center;    
+    align-content: center;
+    position: relative;
+    top: 4px;  
+    right: 8px;
+}
+
+.timer {
+    position: absolute;
+    font-size: 400%;
+    top: 250px;
+    left: 655px;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.users-name {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 60px;
+    text-align: center;
+    position: absolute;
+    left: 120px;
+    top: 15px;
+
+
+}
+
+.users-name input {
+    border-radius: 5px;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    bottom: 17px;
+    left: 105px;
+    
+    
+}
+
+.start-button input {
+    border-radius: 150px;
+    border: none;
+    background-color: orange;
+    color: white;
+    width: 90px;
+}
+
+.select-character-text {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 60px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 120px;
+    top: 40px;
+}
+
+.left {
+    height: 50px;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    position: absolute;
+    left: -3px;
+    top: 185px;
+    color: orange;
+}
+
+.right {
+    height: 50px;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    position: absolute;
+    right: 0px;
+    top: 188px;
+    color: orange;
+}
+
+.dash {
+    height: 50px;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    position: absolute;
+    right: 100px;
+    top: 188px;
+    color: white;
+}
+
+/* END POP UP */
+
+.game-end {
+    position: absolute;
+    bottom: 0;
+    border: solid black;
+    height: 350px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.829);
+    border-radius: 5px;
+    display: flex;
+    display: -webkit-flex;
+    display: -o-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 445px;
+    left: 527px;
+}
+
+.congratulations-text {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 60px;
+    color: orange;
+    text-align: center;
+    position: absolute;
+    left: 115px;
+    top: 0px;
+}
+
+.time-text {
+    /* width: 200px; */
+    color: white;
+    position: absolute;
+    left: 80px;
+    top: 40px;
+}
+
+.time {
+    /* width: 200px; */
+    color: white;
+    position: absolute;
+    left: 117px;
+    top: 80px;
+}
+
+.one {
+    color: white;
+    position: absolute;
+    left: 55px;
+    top: 110px;
+    word-spacing: 20px;
+    font-size: 130%;
+}
+
+.Two {
+    color: white;
+    position: absolute;
+    left: 55px;
+    top: 160px;
+    word-spacing: 20px;
+    font-size: 130%;
+}
+
+.Three {
+    color: white;
+    position: absolute;
+    left: 55px;
+    top: 210px;
+    word-spacing: 20px;
+    font-size: 130%;
+}
+
+.play-again-btn input {
+        border-radius: 150px;
+        border: none;
+        background-color: orange;
+        color: white;
+        width: 120px;
+    
+}
+
+.play-again-btn {
+ 
+
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        position: absolute;
+        bottom: 17px;
+        left: 90px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
