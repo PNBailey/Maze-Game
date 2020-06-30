@@ -1,8 +1,5 @@
 import { elements } from './base'
 import { characters } from './base'
-import { getCurrentBoxEl } from './base'
-import { getRequiredBoxEl } from './base'
-import { getCharacterImg } from './base'
 
 export const scrollCharacter = (event) => {
     let currentCharacterIndex = characters.indexOf(elements.characterImg.getAttribute('src'));
@@ -111,10 +108,107 @@ export const playerFinished = (isPlayerfinished) => {
 
 };
 
+ const getCurrentBoxEl = (currentPos) => {
+    const currBox = document.getElementById(`box-${currentPos}`);
+    return currBox;
+};
 
 
+ const getCharacterImg = () => {
+    const characterImgEl = document.querySelector('.character-box');
+    return characterImgEl;
+};
 
 
+ const getRequiredBoxEl = (requiredPos) => {
+    const requiredBox = document.getElementById(requiredPos);
+    return requiredBox;
+};
+
+export const renderCharacter = (character) => {
+    elements.boxOne.insertAdjacentHTML("beforeend", '<img class="character-img character-box" src="' + character + '">');
+};
+
+export const removeCharacter = () => {
+    const characterImgEl = document.querySelector('.character-box');
+    characterImgEl.parentElement.removeChild(characterImgEl);
+};
+
+export const renderCountdown = (timer) => {
+    elements.timer.style.visibility = "unset";
+    elements.timer.innerHTML = timer;
+
+};
 
 
+export const renderGo = () => {
+    elements.timer.innerHTML = "Go";
+};
+
+export const removeCountdown = () => {
+    elements.timer.style.visibility = "hidden";
+};
+
+export const renderUsersInput = () => {
+    
+    let html = ` <div class="users-input animated slideInUp">
+    <div class="users-name">
+        <input class="users-name-input" type="text" name="Name" placeholder="Enter Name" required>
+    </div>
+    <div class="select-character-text">
+        <p>Select Character</p>
+    </div>
+    <div class="character-select">
+        <ion-icon class="left" name="arrow-dropleft-circle"></ion-icon>
+        <ion-icon class="right" name="arrow-dropright-circle"></ion-icon>
+        <img class="character-img trump" src="images/trump.png">
+    </div>
+    <div class="start-button">
+        <input type="button" value="START">
+    </div>
+</div> `
+
+elements.popUpContainer.insertAdjacentHTML("beforeend", html);
+
+};
+
+export const removeUsersInput = () => {
+    elements.usersInput.parentElement.removeChild(elements.usersInput);
+};
+
+export const renderLeaderBoard = (leaderBoard, totalTime) => {
+    let html;
+    if (leaderBoard.length <= 1) {
+        html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. - </p></div><div class="Three"><p>3. - </p></div></div><div class="play-again-btn"><input type="button" class="play-btn" value="PLAY AGAIN"></div></div></div>';
+    } else if (leaderBoard.length === 2) {
+        html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. ' + leaderBoard[1].name + ' ' + leaderBoard[1].finishTime + '</p></div><div class="Three"><p>3. - </p></div></div><div class="play-btn"><input type="button" class="play-again-btn" value="PLAY AGAIN"></div></div></div>';
+    } else {
+        html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. ' + leaderBoard[1].name + ' ' + leaderBoard[1].finishTime + '</p></div><div class="Three"><p>3. ' + leaderBoard[2].name + ' ' + leaderBoard[2].finishTime + '</p></div></div><div class="play-again-btn"><input type="button" class="play-btn" value="PLAY AGAIN"></div></div></div>'
+    }
+    elements.leaderBoardContainer.insertAdjacentHTML("beforeend", html);
+}
+
+export const removeLeaderBoard = () => {
+
+    const gameEnd = document.querySelector('.game-end');
+
+    gameEnd.parentElement.removeChild(gameEnd);
+
+};
+
+export const setupPlayAgain = (e) => {
+    const playAgainBtn = document.querySelector('.play-btn');
+    if(e.target === playAgainBtn) {
+        removeLeaderBoard();
+        renderUsersInput();
+        removeCharacter();
+    }
+
+
+    
+
+};
+
+
+// document.querySelector(DOMstrings.gameEnd).style.visibility = "unset";
 

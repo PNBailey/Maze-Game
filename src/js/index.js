@@ -20,7 +20,7 @@ const countDown = () => {
     timer = 3;
     let startTimer = setInterval(() => {
         timer -= 1;
-        base.renderCountdown(timer);
+        gameView.renderCountdown(timer);
         if (timer <= 0) {
             clearInterval(startTimer);
         }
@@ -202,31 +202,32 @@ const ctrlStartWallChanges = async () => {
 };
 
 const ctrlStartGame = async () => {
+
     //1. create new player using player object from getPlayer method
     const newPlayer = gameView.getPlayer();
     state.player = new Player(newPlayer.name, newPlayer.character);
 
     //2. create new game and leaderboard
     state.game = new Game();
-    console.log(state);
+    // console.log(state);
 
     //3. remove users input 
-    base.removeUsersInput();
+    gameView.removeUsersInput();
 
     //4. Insert character into start position of maze
-    base.rendercharacter(state.player.character);
+    gameView.renderCharacter(state.player.character);
 
     //5. begin and display countdown
     countDown();
-    base.renderCountdown(timer);
+    gameView.renderCountdown(timer);
 
     //6. await for countdown to finish and display Go 
     await delay(3000);
-    base.renderGo();
+    gameView.renderGo();
 
     //7. remove go
     await delay(1500);
-    base.removeCountdown();
+    gameView.removeCountdown();
 
     //8. get the start time for new game
     state.game.getStartTime();
@@ -240,6 +241,8 @@ const ctrlStartGame = async () => {
 };
 
 base.elements.startButton.addEventListener("click", ctrlStartGame);
+
+
 
 const ctrlPlayerFinished = () => {
 
@@ -261,6 +264,27 @@ const ctrlPlayerFinished = () => {
     //4. update leader board
     state.game.addLeaderBoard(leaderBoard);
 
+    //5. render leaderboard
+    gameView.renderLeaderBoard(leaderBoard, state.game.totalTime);
+
+    //6. add play again event listener
+    base.elements.leaderBoardContainer.addEventListener("click", (e) => {
+        const playAgainBtn = document.querySelector('.play-btn');
+        if(e.target === playAgainBtn) {
+            gameView.removeLeaderBoard();
+            gameView.renderUsersInput();
+            gameView.removeCharacter();
+            
+        }
+        const characterSelect = document.querySelector('.character-select');
+        const startButton = document.querySelector('.start-button');
+        characterSelect.addEventListener("click", gameView.scrollCharacter);
+        startButton.addEventListener("click", ctrlStartGame);
+        });
+
+  
+
+    
     console.log(state);
 
 };
