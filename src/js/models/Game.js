@@ -1,18 +1,20 @@
 export default class Game {
 
-    constructor() {
-    }
-   async delay(ms) {
-        return await new Promise(resolve => setTimeout(resolve, ms));
-      }
 
     getStartTime() {
         const currTime = new Date();
         this.startTime = currTime.getTime();
-        
+
     }
 
-   getCurrentPosition(boxes) {
+    calcFinishTime() {
+        let finTime = new Date();
+        let finishTime = finTime.getTime();
+        let total = ((finishTime - this.startTime) / 1000);
+        this.totalTime = total.toFixed(2);
+    }
+
+    getCurrentPosition(boxes) {
         let res = null;
         boxes.forEach((curr) => {
             if (typeof curr.children[0] !== 'undefined' && curr.children[0]) {
@@ -23,10 +25,10 @@ export default class Game {
         this.currentPosition = res;
 
     };
-    
+
     getRequiredPosition(requiredNum, addOrSubtract) {
         let res = null;
-        if(addOrSubtract === '-') {
+        if (addOrSubtract === '-') {
             res = parseInt(this.currentPosition) - requiredNum;
         } else {
             res = parseInt(this.currentPosition) + requiredNum;
@@ -34,9 +36,12 @@ export default class Game {
         res = `box-${res}`;
         this.requiredPos = res;
     };
+
+
+    addLeaderBoard(newLeaderBoard) {
+        this.leaderBoard = newLeaderBoard;
+    };
     
-    
-  
-}
+};
 
 

@@ -1,16 +1,16 @@
-import { elements } from './views/base'
+import * as base from './views/base'
 import * as gameView from './views/gameView'
 import Player from './models/Player'
 import Game from './models/Game'
 
 const state = {};
 let timer;
-let playerfinished = false;
+let isPlayerFinished = false;
 
 
 // GAME CONTROLLER
 
-elements.characterSelect.addEventListener("click", gameView.scrollCharacter);
+base.elements.characterSelect.addEventListener("click", gameView.scrollCharacter);
 
 const delay = async (ms) => {
     return await new Promise(resolve => setTimeout(resolve, ms));
@@ -20,91 +20,68 @@ const countDown = () => {
     timer = 3;
     let startTimer = setInterval(() => {
         timer -= 1;
-        gameView.renderCountdown(timer);
+        base.renderCountdown(timer);
         if (timer <= 0) {
             clearInterval(startTimer);
         }
     }, 1000);
 };
 
-const startGame = async () => {
-    // 1. create new player using player object from getPlayer method
-    const newPlayer = gameView.getPlayer();
-    state.player = new Player(newPlayer.name, newPlayer.character);
-
-    // 2. create new game
-    state.game = new Game();
-
-    //3. Insert character into start position of maze
-    gameView.rendercharacter(state.player.character);
-
-    //4. begin and display countdown
-    countDown();
-    gameView.renderCountdown(timer);
-
-    //5. await for countdown to finish and display Go 
-    await delay(3000);
-    gameView.renderGo();
-
-    //6. remove go
-    await delay(1500);
-    gameView.removeGo();
-
-    //6. get the start time for new game
-    state.game.getStartTime();
-
-    //7. allow user to move
-    document.addEventListener("keydown", (e) => {
-        state.game.getCurrentPosition(elements.boxes);
-        let direction = "";
-        let addOrSubtract = "";
-        let requiredNumber = "";
-        const key_code = e.which || e.keyCode;
-        switch (key_code) {
-            case 37: //left arrow key
-                direction = "left";
-                addOrSubtract = "-";
-                requiredNumber = 1;
-                state.game.getRequiredPosition(requiredNumber, addOrSubtract);
-                gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
-                playerfinished = gameView.checkPlayerFinished();
-                break;
-            case 38: //Up arrow key
-                direction = "up";
-                addOrSubtract = "-";
-                requiredNumber = 6;
-                state.game.getRequiredPosition(requiredNumber, addOrSubtract);
-                gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
-                playerfinished = gameView.checkPlayerFinished();
-                break;
-            case 39: //right arrow key
-                direction = "right";
-                addOrSubtract = "+";
-                requiredNumber = 1;
-                state.game.getRequiredPosition(requiredNumber, addOrSubtract);
-                gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
-                playerfinished = gameView.checkPlayerFinished();
-                break;
-            case 40: //down arrow key
-                direction = "down";
-                addOrSubtract = "+";
-                requiredNumber = 6;
-                state.game.getRequiredPosition(requiredNumber, addOrSubtract);
-                gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
-                playerfinished = gameView.checkPlayerFinished();
-                break;
-        }
-
-    });
-
-    //8. start wall changes
-    startWallChanges();
-
+const ctrlPlayerMovement = (e) => {
+    state.game.getCurrentPosition(base.elements.boxes);
+    let direction = "";
+    let addOrSubtract = "";
+    let requiredNumber = "";
+    const key_code = e.which || e.keyCode;
+    switch (key_code) {
+        case 37: //left arrow key
+            direction = "left";
+            addOrSubtract = "-";
+            requiredNumber = 1;
+            state.game.getRequiredPosition(requiredNumber, addOrSubtract);
+            gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
+            isPlayerFinished = gameView.checkPlayerFinished();
+            if(isPlayerFinished) {
+                ctrlPlayerFinished();
+            }
+            break;
+        case 38: //Up arrow key
+            direction = "up";
+            addOrSubtract = "-";
+            requiredNumber = 6;
+            state.game.getRequiredPosition(requiredNumber, addOrSubtract);
+            gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
+            isPlayerFinished = gameView.checkPlayerFinished();
+            if(isPlayerFinished) {
+                ctrlPlayerFinished();
+            }
+            break;
+        case 39: //right arrow key
+            direction = "right";
+            addOrSubtract = "+";
+            requiredNumber = 1;
+            state.game.getRequiredPosition(requiredNumber, addOrSubtract);
+            gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
+            isPlayerFinished = gameView.checkPlayerFinished();
+            if(isPlayerFinished) {
+                ctrlPlayerFinished();
+            }
+            break;
+        case 40: //down arrow key
+            direction = "down";
+            addOrSubtract = "+";
+            requiredNumber = 6;
+            state.game.getRequiredPosition(requiredNumber, addOrSubtract);
+            gameView.moveCharacter(direction, state.game.currentPosition, state.game.requiredPos, state.player.character);
+            isPlayerFinished = gameView.checkPlayerFinished();
+            if(isPlayerFinished) {
+                ctrlPlayerFinished();
+            }
+            break;
+    }
 };
 
-elements.startButton.addEventListener("click", startGame);
-
-const startWallChanges = async () => {
+const ctrlStartWallChanges = async () => {
     const borderTop = "top";
     const borderRight = "right";
     const borderBottom = "bottom";
@@ -112,7 +89,7 @@ const startWallChanges = async () => {
     const add = "add";
     const remove = "remove";
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderLeft, 15, 6);
@@ -124,7 +101,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 14);
     gameView.changeWalls(remove, borderLeft, 5, 22, 29);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderTop, 27, 34, 35);
@@ -135,7 +112,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 14);
     gameView.changeWalls(remove, borderLeft, 28, 6, 35);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderLeft, 6, 28);
@@ -147,7 +124,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 27);
     gameView.changeWalls(remove, borderLeft, 18);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderLeft, 26, 18);
@@ -157,7 +134,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 34);
     gameView.changeWalls(remove, borderLeft, 6);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderTop, 34);
@@ -167,7 +144,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 25);
     gameView.changeWalls(remove, borderLeft, 28, 27);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderLeft, 15, 6);
@@ -179,7 +156,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 14);
     gameView.changeWalls(remove, borderLeft, 5, 22, 29);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderTop, 27, 34, 35);
@@ -190,7 +167,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 14);
     gameView.changeWalls(remove, borderLeft, 28, 6, 35);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderLeft, 6, 28);
@@ -202,7 +179,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 27);
     gameView.changeWalls(remove, borderLeft, 18);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderLeft, 26, 18);
@@ -212,7 +189,7 @@ const startWallChanges = async () => {
     gameView.changeWalls(remove, borderTop, 34);
     gameView.changeWalls(remove, borderLeft, 6);
     await delay(1500);
-    if (playerfinished) {
+    if (isPlayerFinished) {
         return;
     }
     gameView.changeWalls(add, borderTop, 34);
@@ -224,8 +201,69 @@ const startWallChanges = async () => {
 
 };
 
+const ctrlStartGame = async () => {
+    //1. create new player using player object from getPlayer method
+    const newPlayer = gameView.getPlayer();
+    state.player = new Player(newPlayer.name, newPlayer.character);
 
+    //2. create new game and leaderboard
+    state.game = new Game();
+    console.log(state);
 
+    //3. remove users input 
+    base.removeUsersInput();
+
+    //4. Insert character into start position of maze
+    base.rendercharacter(state.player.character);
+
+    //5. begin and display countdown
+    countDown();
+    base.renderCountdown(timer);
+
+    //6. await for countdown to finish and display Go 
+    await delay(3000);
+    base.renderGo();
+
+    //7. remove go
+    await delay(1500);
+    base.removeCountdown();
+
+    //8. get the start time for new game
+    state.game.getStartTime();
+
+    //9. allow user to move
+    document.addEventListener("keydown", ctrlPlayerMovement);
+
+    //10. start wall changes
+    ctrlStartWallChanges();
+
+};
+
+base.elements.startButton.addEventListener("click", ctrlStartGame);
+
+const ctrlPlayerFinished = () => {
+
+    const leaderBoard = [];
+
+    //1. stop plyer from moving (remove event listener)
+    document.removeEventListener("keydown", ctrlPlayerMovement);
+
+    //2. get finish time
+    state.game.calcFinishTime();
+    state.player.finishTime = state.game.totalTime;
+    
+    //3. push player to leaderBoard
+    leaderBoard.push({
+        name: state.player.name,
+        finishTime: state.player.finishTime
+    });
+
+    //4. update leader board
+    state.game.addLeaderBoard(leaderBoard);
+
+    console.log(state);
+
+};
 
 
 
@@ -406,7 +444,7 @@ const startWallChanges = async () => {
 //     return {
 
 
-//         // 1. establish what current position is (save all box html elements into an array and loop through array to establish which one has an image child in it. Save the id into a variable and return it to the method so that we know what the current position is)
+//         // 1. establish what current position is (save all box html base.elements into an array and loop through array to establish which one has an image child in it. Save the id into a variable and return it to the method so that we know what the current position is)
 //         currentPosition: (boxes) => {
 //             let res = null;
 //             boxes.forEach((curr) => {
@@ -796,7 +834,7 @@ const startWallChanges = async () => {
 
 //         // start game
 
-//         const startGame = () => new Promise((resolve) => {
+//         const ctrlStartGame = () => new Promise((resolve) => {
 //             resolve();
 //         });
 
@@ -873,7 +911,7 @@ const startWallChanges = async () => {
 //                 document.querySelector(DOMstrings.timer).style.visibility = "unset";
 //                 document.querySelector(DOMstrings.timer).style.left = "625px";
 //                 document.querySelector(DOMstrings.timer).innerHTML = "GO!";
-//                 return startGame();
+//                 return ctrlStartGame();
 //             })
 
 //             .then(() => {

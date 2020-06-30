@@ -27,30 +27,6 @@ export const getPlayer = () => {
     return getPlayerDetails;
 };
 
-export const renderCountdown = (timer) => {
-    elements.usersInput.style.visibility = "hidden";
-    elements.timer.style.visibility = "unset";
-    elements.timer.innerHTML = timer;
-
-};
-
-export const removeCountdown = () => {
-    elements.timer.style.visibility = "hidden";
-};
-
-export const renderGo = () => {
-    elements.timer.innerHTML = "Go";
-};
-
-
-export const removeGo = () => {
-    elements.timer.style.visibility = "hidden";
-};
-
-
-export const rendercharacter = (character) => {
-    elements.boxOne.insertAdjacentHTML("beforeend", '<img class="character-img character-box" src="' + character + '">');
-};
 
 const removeAddCharacter = (chosenCharacter, requiredPos, currPosition) => {
     const parentEl = getCharacterImg(currPosition).parentNode;
@@ -77,40 +53,40 @@ export const moveCharacter = (direction, currPosition, requiredPos, chosenCharac
 
 export const changeWalls = (addOrRemove, side, ...boxes) => {
     const boxEls = getBoxArrEl(...boxes);
-    if(side === "top" && addOrRemove === "add") {
+    if (side === "top" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderTop");
         });
-    } else if(side === "top" && addOrRemove === "remove") {
+    } else if (side === "top" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderTop");
         });
-    } else if(side === "right" && addOrRemove === "add") {
+    } else if (side === "right" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderRight");
         });
-    } else if(side === "right" && addOrRemove === "remove") {
+    } else if (side === "right" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderRight");
         });
-    } else if(side === "bottom" && addOrRemove === "add") {
+    } else if (side === "bottom" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderBottom");
         });
-    } else if(side === "bottom" && addOrRemove === "remove") {
+    } else if (side === "bottom" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderBottom");
         });
-    } else if(side === "left" && addOrRemove === "add") {
+    } else if (side === "left" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderLeft");
         });
-    } else if(side === "left" && addOrRemove === "remove") {
+    } else if (side === "left" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderLeft");
         });
-    } 
-    
+    }
+
 };
 
 export const getBoxArrEl = (...boxes) => boxes.map(getCurrentBoxEl);
@@ -124,6 +100,19 @@ export const checkPlayerFinished = () => {
     }
 
 };
+
+export const playerFinished = (isPlayerfinished) => {
+    if (isPlayerfinished) {
+        const finTime = new Date();
+        const finishTime = finTime.getTime();
+        const total = ((finishTime - startTime) / 1000) - 4;
+        totalTime = total.toFixed(2);
+    }
+
+};
+
+
+
 
 
 
