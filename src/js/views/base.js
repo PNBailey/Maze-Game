@@ -13,20 +13,31 @@ export const elements = {
     finishBox: document.querySelector('.box36'),
     popUpContainer: document.querySelector('.container'),
     leaderBoardContainer: document.querySelector('.end-container'),
-    // playAgainBtn: document.querySelector('.play-btn'),
+    playAgainBtn: document.querySelector('.play-btn')
     
 };
 
 
 export const characters = ["images/trump.png", "images/Boris.png"];
 
-export const getNewElements = () => {
-    const newElements = {
-       playAgainBtn: document.querySelector('.play-btn'),
-       characterSelect: document.querySelector('.character-select'),
-       startButton: document.querySelector('.start-button')
+export const getPlayAgainBtn = () => document.querySelector('.play-btn');
+
+export const getStrings = () => {
+    const strings = {
+        add: "add",
+        remove: "remove",
+        borderLeft: "borderLeft",
+        borderRight: "borderRight",
+        borderTop: 'borderTop',
+        borderBottom: "borderbottom",
+        left: "left",
+        right: "right",
+        up: "up",
+        down: "down",
+        subtract: "-",
+        plus: "+" 
     }
-    return newElements;
+    return strings;
 };
 
 

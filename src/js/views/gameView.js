@@ -1,5 +1,8 @@
 import { elements } from './base'
 import { characters } from './base'
+import { getPlayAgainBtn } from './base'
+import { getStrings } from './base'
+
 
 export const scrollCharacter = (event) => {
     let currentCharacterIndex = characters.indexOf(elements.characterImg.getAttribute('src'));
@@ -50,35 +53,35 @@ export const moveCharacter = (direction, currPosition, requiredPos, chosenCharac
 
 export const changeWalls = (addOrRemove, side, ...boxes) => {
     const boxEls = getBoxArrEl(...boxes);
-    if (side === "top" && addOrRemove === "add") {
+    if (side === "borderTop" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderTop");
         });
-    } else if (side === "top" && addOrRemove === "remove") {
+    } else if (side === "borderTop" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderTop");
         });
-    } else if (side === "right" && addOrRemove === "add") {
+    } else if (side === "borderRight" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderRight");
         });
-    } else if (side === "right" && addOrRemove === "remove") {
+    } else if (side === "borderRight" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderRight");
         });
-    } else if (side === "bottom" && addOrRemove === "add") {
+    } else if (side === "borderbottom" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderBottom");
         });
-    } else if (side === "bottom" && addOrRemove === "remove") {
+    } else if (side === "borderbottom" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderBottom");
         });
-    } else if (side === "left" && addOrRemove === "add") {
+    } else if (side === "borderLeft" && addOrRemove === "add") {
         boxEls.forEach((e) => {
             e.classList.add("borderLeft");
         });
-    } else if (side === "left" && addOrRemove === "remove") {
+    } else if (side === "borderLeft" && addOrRemove === "remove") {
         boxEls.forEach((e) => {
             e.classList.remove("borderLeft");
         });
@@ -129,7 +132,7 @@ export const renderCharacter = (character) => {
     elements.boxOne.insertAdjacentHTML("beforeend", '<img class="character-img character-box" src="' + character + '">');
 };
 
-export const removeCharacter = () => {
+const removeCharacter = () => {
     const characterImgEl = document.querySelector('.character-box');
     characterImgEl.parentElement.removeChild(characterImgEl);
 };
@@ -149,7 +152,7 @@ export const removeCountdown = () => {
     elements.timer.style.visibility = "hidden";
 };
 
-export const renderUsersInput = () => {
+const renderUsersInput = () => {
     elements.usersInput.style.visibility = "unset";
 };
 
@@ -169,7 +172,7 @@ export const renderLeaderBoard = (leaderBoard, totalTime) => {
     elements.leaderBoardContainer.insertAdjacentHTML("beforeend", html);
 }
 
-export const removeLeaderBoard = () => {
+const removeLeaderBoard = () => {
 
     const gameEnd = document.querySelector('.game-end');
 
@@ -178,18 +181,26 @@ export const removeLeaderBoard = () => {
 };
 
 export const setupPlayAgain = (e) => {
-    const playAgainBtn = document.querySelector('.play-btn');
+    const playAgainBtn = getPlayAgainBtn();
     if(e.target === playAgainBtn) {
         removeLeaderBoard();
         renderUsersInput();
         removeCharacter();
     }
+};
 
-
-    
-
+export const resetWalls = () => {
+    const strings = getStrings();
+    console.log(strings);
+    changeWalls(strings.add, strings.borderLeft, 1, 3, 5, 7, 8, 10, 11, 12, 13, 17, 18, 19, 22, 24, 25, 28, 29, 31, 35);
+    changeWalls(strings.add, strings.borderTop, 1, 2, 3, 4, 5, 6, 14, 15, 20, 21, 22, 25, 26, 29, 32, 33, 36);
+    changeWalls(strings.add, strings.borderRight, 2, 4, 6, 7, 9, 10, 11, 12, 16, 17, 18, 21, 23, 24, 27, 28, 20, 34, 36);
+    changeWalls(strings.add, strings.borderBottom, 1, 8, 9, 14, 15, 16, 19, 20, 23, 26, 27, 30, 31, 32, 33, 34, 35, 36);
+    changeWalls(strings.remove,strings.borderBottom, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 17, 18, 21, 22, 24, 25, 28, 29);
+    changeWalls(strings.remove, strings.borderRight, 1, 3, 5, 8, 13, 14, 19, 20, 22, 25, 26, 29, 31, 32, 33, 35);
+    changeWalls(strings.remove, strings.borderTop, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 23, 24, 27, 28, 30, 31, 34, 35);
+    changeWalls(strings.remove, strings.borderLeft, 2, 4, 6, 9, 15, 16, 20, 21, 23, 26, 27, 30, 32, 33, 34, 36);
 };
 
 
-// document.querySelector(DOMstrings.gameEnd).style.visibility = "unset";
 
