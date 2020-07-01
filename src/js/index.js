@@ -6,6 +6,7 @@ import Game from './models/Game'
 const state = {};
 let timer;
 let isPlayerFinished = false;
+const leaderBoard = [];
 
 
 // GAME CONTROLLER
@@ -202,7 +203,6 @@ const ctrlStartWallChanges = async () => {
 };
 
 const ctrlStartGame = async (event) => {
-    console.log(event.target);
     if(event.target === base.elements.startButton) {
 //1. create new player using player object from getPlayer method
 const newPlayer = gameView.getPlayer();
@@ -240,18 +240,13 @@ document.addEventListener("keydown", ctrlPlayerMovement);
 ctrlStartWallChanges();
 }
     
-
 };
 
 base.elements.startButton.addEventListener("click", ctrlStartGame);
 
 
-
 const ctrlPlayerFinished = () => {
     
-    const leaderBoard = [];
-   
-
     //1. stop plyer from moving (remove event listener)
     document.removeEventListener("keydown", ctrlPlayerMovement);
 
@@ -265,39 +260,27 @@ const ctrlPlayerFinished = () => {
         finishTime: state.player.finishTime
     });
 
+    //sort leader board
+    leaderBoard.sort((a, b) => a.finishTime - b.finishTime);
+
     //4. update leader board
     state.game.addLeaderBoard(leaderBoard);
 
     //5. render leaderboard
-    gameView.renderLeaderBoard(leaderBoard, state.game.totalTime);
+    gameView.renderLeaderBoard(state.game.leaderBoard, state.game.totalTime);
 
     // 6. add play again event listener
     base.elements.leaderBoardContainer.addEventListener("click", (e) => {
         const newElements = base.getNewElements();
-        console.log(newElements);
         if(e.target === newElements.playAgainBtn) {
             gameView.removeLeaderBoard();
             gameView.renderUsersInput();
             gameView.removeCharacter();
-            
     }
-
-    base.elements.popUpContainer.addEventListener("click", gameView.scrollCharacter);
-    base.elements.popUpContainer.addEventListener("click", ctrlStartGame);
 
 });
 
    
-        
-
-        
-       
-
-  
-
-    
-    console.log(state);
-
 };
 
 

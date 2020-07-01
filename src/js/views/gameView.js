@@ -150,31 +150,11 @@ export const removeCountdown = () => {
 };
 
 export const renderUsersInput = () => {
-    
-    let html = ` <div class="users-input animated slideInUp">
-    <div class="users-name">
-        <input class="users-name-input" type="text" name="Name" placeholder="Enter Name" required>
-    </div>
-    <div class="select-character-text">
-        <p>Select Character</p>
-    </div>
-    <div class="character-select">
-        <ion-icon class="left" name="arrow-dropleft-circle"></ion-icon>
-        <ion-icon class="right" name="arrow-dropright-circle"></ion-icon>
-        <img class="character-img trump" src="images/trump.png">
-    </div>
-    <div class="start-button-container">
-        <input class="start-button" type="button" value="START">
-    </div>
-</div> `
-
-elements.popUpContainer.insertAdjacentHTML("beforeend", html);
-
+    elements.usersInput.style.visibility = "unset";
 };
 
 export const removeUsersInput = () => {
-    const usersInput = document.querySelector('.users-input');
-    usersInput.parentElement.removeChild(usersInput);
+    elements.usersInput.style.visibility = "hidden";
 };
 
 export const renderLeaderBoard = (leaderBoard, totalTime) => {
@@ -182,7 +162,7 @@ export const renderLeaderBoard = (leaderBoard, totalTime) => {
     if (leaderBoard.length <= 1) {
         html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. - </p></div><div class="Three"><p>3. - </p></div></div><div class="play-again-btn"><input type="button" class="play-btn" value="PLAY AGAIN"></div></div></div>';
     } else if (leaderBoard.length === 2) {
-        html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. ' + leaderBoard[1].name + ' ' + leaderBoard[1].finishTime + '</p></div><div class="Three"><p>3. - </p></div></div><div class="play-btn"><input type="button" class="play-again-btn" value="PLAY AGAIN"></div></div></div>';
+        html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. ' + leaderBoard[1].name + ' ' + leaderBoard[1].finishTime + '</p></div><div class="Three"><p>3. - </p></div></div><div class="play-again-btn"><input type="button" class="play-btn" value="PLAY AGAIN"></div></div></div>';
     } else {
         html = '<div class="game-end animated slideInUp"><div class="congratulations-text"><p>CONGRATULATIONS!</p></div><div class="time-text row"><p>Your Time Was</p></div><div class="time"><p>' + totalTime + '</p></div><div class="leader-board"><div class="one"><p>1. ' + leaderBoard[0].name + ' ' + leaderBoard[0].finishTime + '</p></div><div class="Two"><p>2. ' + leaderBoard[1].name + ' ' + leaderBoard[1].finishTime + '</p></div><div class="Three"><p>3. ' + leaderBoard[2].name + ' ' + leaderBoard[2].finishTime + '</p></div></div><div class="play-again-btn"><input type="button" class="play-btn" value="PLAY AGAIN"></div></div></div>'
     }
