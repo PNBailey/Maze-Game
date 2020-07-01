@@ -201,42 +201,45 @@ const ctrlStartWallChanges = async () => {
 
 };
 
-const ctrlStartGame = async () => {
+const ctrlStartGame = async (event) => {
+    console.log(event.target);
+    if(event.target === base.elements.startButton) {
+//1. create new player using player object from getPlayer method
+const newPlayer = gameView.getPlayer();
+state.player = new Player(newPlayer.name, newPlayer.character);
 
-    //1. create new player using player object from getPlayer method
-    const newPlayer = gameView.getPlayer();
-    state.player = new Player(newPlayer.name, newPlayer.character);
+//2. create new game and leaderboard
+state.game = new Game();
+// console.log(state);
 
-    //2. create new game and leaderboard
-    state.game = new Game();
-    // console.log(state);
+//3. remove users input 
+gameView.removeUsersInput();
 
-    //3. remove users input 
-    gameView.removeUsersInput();
+//4. Insert character into start position of maze
+gameView.renderCharacter(state.player.character);
 
-    //4. Insert character into start position of maze
-    gameView.renderCharacter(state.player.character);
+//5. begin and display countdown
+countDown();
+gameView.renderCountdown(timer);
 
-    //5. begin and display countdown
-    countDown();
-    gameView.renderCountdown(timer);
+//6. await for countdown to finish and display Go 
+await delay(3000);
+gameView.renderGo();
 
-    //6. await for countdown to finish and display Go 
-    await delay(3000);
-    gameView.renderGo();
+//7. remove go
+await delay(1500);
+gameView.removeCountdown();
 
-    //7. remove go
-    await delay(1500);
-    gameView.removeCountdown();
+//8. get the start time for new game
+state.game.getStartTime();
 
-    //8. get the start time for new game
-    state.game.getStartTime();
+//9. allow user to move
+document.addEventListener("keydown", ctrlPlayerMovement);
 
-    //9. allow user to move
-    document.addEventListener("keydown", ctrlPlayerMovement);
-
-    //10. start wall changes
-    ctrlStartWallChanges();
+//10. start wall changes
+ctrlStartWallChanges();
+}
+    
 
 };
 
@@ -245,8 +248,9 @@ base.elements.startButton.addEventListener("click", ctrlStartGame);
 
 
 const ctrlPlayerFinished = () => {
-
+    
     const leaderBoard = [];
+   
 
     //1. stop plyer from moving (remove event listener)
     document.removeEventListener("keydown", ctrlPlayerMovement);
@@ -267,20 +271,27 @@ const ctrlPlayerFinished = () => {
     //5. render leaderboard
     gameView.renderLeaderBoard(leaderBoard, state.game.totalTime);
 
-    //6. add play again event listener
+    // 6. add play again event listener
     base.elements.leaderBoardContainer.addEventListener("click", (e) => {
-        const playAgainBtn = document.querySelector('.play-btn');
-        if(e.target === playAgainBtn) {
+        const newElements = base.getNewElements();
+        console.log(newElements);
+        if(e.target === newElements.playAgainBtn) {
             gameView.removeLeaderBoard();
             gameView.renderUsersInput();
             gameView.removeCharacter();
             
-        }
-        const characterSelect = document.querySelector('.character-select');
-        const startButton = document.querySelector('.start-button');
-        characterSelect.addEventListener("click", gameView.scrollCharacter);
-        startButton.addEventListener("click", ctrlStartGame);
-        });
+    }
+
+    base.elements.popUpContainer.addEventListener("click", gameView.scrollCharacter);
+    base.elements.popUpContainer.addEventListener("click", ctrlStartGame);
+
+});
+
+   
+        
+
+        
+       
 
   
 
@@ -288,6 +299,7 @@ const ctrlPlayerFinished = () => {
     console.log(state);
 
 };
+
 
 
 

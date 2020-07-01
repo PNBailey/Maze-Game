@@ -163,8 +163,8 @@ export const renderUsersInput = () => {
         <ion-icon class="right" name="arrow-dropright-circle"></ion-icon>
         <img class="character-img trump" src="images/trump.png">
     </div>
-    <div class="start-button">
-        <input type="button" value="START">
+    <div class="start-button-container">
+        <input class="start-button" type="button" value="START">
     </div>
 </div> `
 
@@ -173,7 +173,8 @@ elements.popUpContainer.insertAdjacentHTML("beforeend", html);
 };
 
 export const removeUsersInput = () => {
-    elements.usersInput.parentElement.removeChild(elements.usersInput);
+    const usersInput = document.querySelector('.users-input');
+    usersInput.parentElement.removeChild(usersInput);
 };
 
 export const renderLeaderBoard = (leaderBoard, totalTime) => {

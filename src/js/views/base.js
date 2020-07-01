@@ -17,7 +17,17 @@ export const elements = {
     
 };
 
+
 export const characters = ["images/trump.png", "images/Boris.png"];
+
+export const getNewElements = () => {
+    const newElements = {
+       playAgainBtn: document.querySelector('.play-btn'),
+       characterSelect: document.querySelector('.character-select'),
+       startButton: document.querySelector('.start-button')
+    }
+    return newElements;
+};
 
 
 

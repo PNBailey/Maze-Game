@@ -174,7 +174,7 @@ body {
     border-radius: 5px;
 }
 
-.start-button {
+.start-button-container {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -185,7 +185,7 @@ body {
     
 }
 
-.start-button input {
+.start-button-container input {
     border-radius: 150px;
     border: none;
     background-color: orange;
