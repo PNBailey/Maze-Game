@@ -183,15 +183,13 @@ const ctrlStartWallChanges = async () => {
 
 };
 
-const ctrlStartGame = async (event) => {
-    // if (event.target === base.elements.startButton) {
+const ctrlStartGame = async () => {
         //1. create new player using player object from getPlayer method
         const newPlayer = gameView.getPlayer();
         state.player = new Player(newPlayer.name, newPlayer.character);
 
         //2. create new game and leaderboard
         state.game = new Game();
-        // console.log(state);
 
         //3. remove users input 
         gameView.removeUsersInput();
@@ -220,8 +218,6 @@ const ctrlStartGame = async (event) => {
         //10. start wall changes
         ctrlStartWallChanges();
 
-    // }
-
 };
 
 base.elements.startButton.addEventListener("click", ctrlStartGame);
@@ -244,9 +240,6 @@ const ctrlPlayerFinished = () => {
         name: state.player.name,
         finishTime: state.player.finishTime
     });
-
-    // sort leader board
-    leaderBoard.sort((a, b) => a.finishTime - b.finishTime);
 
     // update leader board
     state.game.addLeaderBoard(leaderBoard);

@@ -62,27 +62,6 @@ export const changeWalls = (addOrRemove, side, ...boxes) => {
     });
 };
 
-// export const changeWalls = (addOrRemove, side, ...boxes) => {
-    
-//     if (side === "borderTop" && addOrRemove === "add") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderTop" && addOrRemove === "remove") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderRight" && addOrRemove === "add") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderRight" && addOrRemove === "remove") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderbottom" && addOrRemove === "add") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderbottom" && addOrRemove === "remove") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderLeft" && addOrRemove === "add") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     } else if (side === "borderLeft" && addOrRemove === "remove") {
-//         addOrRemoveBorder(side, addOrRemove, ...boxes);
-//     }
-
-// };
 
 export const getBoxArrEl = (...boxes) => boxes.map(getCurrentBoxEl);
 
@@ -186,7 +165,6 @@ export const setupPlayAgain = (e) => {
 
 export const resetWalls = () => {
     const strings = getStrings();
-    console.log(strings);
     changeWalls(strings.add, strings.borderLeft, 1, 3, 5, 7, 8, 10, 11, 12, 13, 17, 18, 19, 22, 24, 25, 28, 29, 31, 35);
     changeWalls(strings.add, strings.borderTop, 1, 2, 3, 4, 5, 6, 14, 15, 20, 21, 22, 25, 26, 29, 32, 33, 36);
     changeWalls(strings.add, strings.borderRight, 2, 4, 6, 7, 9, 10, 11, 12, 16, 17, 18, 21, 23, 24, 27, 28, 20, 34, 36);

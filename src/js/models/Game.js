@@ -39,6 +39,7 @@ export default class Game {
 
 
     addLeaderBoard(newLeaderBoard) {
+        newLeaderBoard.sort((a, b) => a.finishTime - b.finishTime);
         this.leaderBoard = newLeaderBoard;
     };
 
