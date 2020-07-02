@@ -29,7 +29,7 @@ export const getStrings = () => {
         borderLeft: "borderLeft",
         borderRight: "borderRight",
         borderTop: 'borderTop',
-        borderBottom: "borderbottom",
+        borderBottom: "borderBottom",
         left: "left",
         right: "right",
         up: "up",

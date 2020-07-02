@@ -53,41 +53,36 @@ export const moveCharacter = (direction, currPosition, requiredPos, chosenCharac
 
 export const changeWalls = (addOrRemove, side, ...boxes) => {
     const boxEls = getBoxArrEl(...boxes);
-    if (side === "borderTop" && addOrRemove === "add") {
-        boxEls.forEach((e) => {
-            e.classList.add("borderTop");
-        });
-    } else if (side === "borderTop" && addOrRemove === "remove") {
-        boxEls.forEach((e) => {
-            e.classList.remove("borderTop");
-        });
-    } else if (side === "borderRight" && addOrRemove === "add") {
-        boxEls.forEach((e) => {
-            e.classList.add("borderRight");
-        });
-    } else if (side === "borderRight" && addOrRemove === "remove") {
-        boxEls.forEach((e) => {
-            e.classList.remove("borderRight");
-        });
-    } else if (side === "borderbottom" && addOrRemove === "add") {
-        boxEls.forEach((e) => {
-            e.classList.add("borderBottom");
-        });
-    } else if (side === "borderbottom" && addOrRemove === "remove") {
-        boxEls.forEach((e) => {
-            e.classList.remove("borderBottom");
-        });
-    } else if (side === "borderLeft" && addOrRemove === "add") {
-        boxEls.forEach((e) => {
-            e.classList.add("borderLeft");
-        });
-    } else if (side === "borderLeft" && addOrRemove === "remove") {
-        boxEls.forEach((e) => {
-            e.classList.remove("borderLeft");
-        });
-    }
-
+    boxEls.forEach((e) => {
+        if(addOrRemove === "add") {
+            e.classList.add(side);
+        } else {
+            e.classList.remove(side);
+        }
+    });
 };
+
+// export const changeWalls = (addOrRemove, side, ...boxes) => {
+    
+//     if (side === "borderTop" && addOrRemove === "add") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderTop" && addOrRemove === "remove") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderRight" && addOrRemove === "add") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderRight" && addOrRemove === "remove") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderbottom" && addOrRemove === "add") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderbottom" && addOrRemove === "remove") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderLeft" && addOrRemove === "add") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     } else if (side === "borderLeft" && addOrRemove === "remove") {
+//         addOrRemoveBorder(side, addOrRemove, ...boxes);
+//     }
+
+// };
 
 export const getBoxArrEl = (...boxes) => boxes.map(getCurrentBoxEl);
 

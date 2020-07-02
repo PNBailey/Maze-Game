@@ -70,8 +70,6 @@ const ctrlPlayerMovement = (e) => {
 
 const ctrlStartWallChanges = async () => {
     const strings = base.getStrings();
-    console.log(strings.add);
-    console.log("add");
     await delay(1500);
     if (isPlayerFinished) {
         return;
@@ -186,7 +184,7 @@ const ctrlStartWallChanges = async () => {
 };
 
 const ctrlStartGame = async (event) => {
-    if (event.target === base.elements.startButton) {
+    // if (event.target === base.elements.startButton) {
         //1. create new player using player object from getPlayer method
         const newPlayer = gameView.getPlayer();
         state.player = new Player(newPlayer.name, newPlayer.character);
@@ -222,7 +220,7 @@ const ctrlStartGame = async (event) => {
         //10. start wall changes
         ctrlStartWallChanges();
 
-    }
+    // }
 
 };
 
@@ -232,32 +230,31 @@ base.elements.startButton.addEventListener("click", ctrlStartGame);
 const ctrlPlayerFinished = () => {
 
     //reset walls
-    
+    gameView.resetWalls();
 
-    //1. stop plyer from moving (remove event listener)
+    // stop plyer from moving (remove event listener)
     document.removeEventListener("keydown", ctrlPlayerMovement);
 
-    //2. get finish time
+    // get finish time
     state.game.calcFinishTime();
     state.player.finishTime = state.game.totalTime;
 
-    //3. push player to leaderBoard
+    // push player to leaderBoard
     leaderBoard.push({
         name: state.player.name,
         finishTime: state.player.finishTime
     });
 
-    //sort leader board
+    // sort leader board
     leaderBoard.sort((a, b) => a.finishTime - b.finishTime);
 
-    //4. update leader board
+    // update leader board
     state.game.addLeaderBoard(leaderBoard);
 
-    //5. render leaderboard
+    // render leaderboard
     gameView.renderLeaderBoard(state.game.leaderBoard, state.game.totalTime);
-    gameView.resetWalls();
 
-    // 6. add play again event listener
+    // add play again event listener
     base.elements.leaderBoardContainer.addEventListener("click", gameView.setupPlayAgain);
 
 };
