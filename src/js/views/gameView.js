@@ -51,17 +51,6 @@ export const moveCharacter = (direction, currPosition, requiredPos, chosenCharac
 
 };
 
-// export const changeWalls = (addOrRemove, side, ...boxes) => {
-//     const boxEls = getBoxArrEl(...boxes);
-//     boxEls.forEach((e) => {
-//         if(addOrRemove === "add") {
-//             e.classList.add(side);
-//         } else {
-//             e.classList.remove(side);
-//         }
-//     });
-// };
-
 export const changeWallsLoopAdd = (...arr) => {
     arr.forEach((e) => {
         changeWallsAdd(e); 
