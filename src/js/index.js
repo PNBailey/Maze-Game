@@ -22,7 +22,7 @@ const countDown = () => {
     let startTimer = setInterval(() => {
         timer -= 1;
         gameView.renderCountdown(timer);
-        if (timer <= 0) {
+        if (timer <= 1) {
             clearInterval(startTimer);
         }
     }, 1000);
