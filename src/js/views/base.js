@@ -14,7 +14,7 @@ export const elements = {
     popUpContainer: document.querySelector('.container'),
     leaderBoardContainer: document.querySelector('.end-container'),
     playAgainBtn: document.querySelector('.play-btn')
-    
+
 };
 
 
@@ -35,7 +35,7 @@ export const getStrings = () => {
         up: "up",
         down: "down",
         subtract: "-",
-        plus: "+" 
+        plus: "+"
     }
     return strings;
 };

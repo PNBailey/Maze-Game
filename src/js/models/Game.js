@@ -43,7 +43,7 @@ export default class Game {
         this.leaderBoard = newLeaderBoard;
     };
 
-    
+
 };
 
 

@@ -70,153 +70,132 @@ const ctrlPlayerMovement = (e) => {
 
 const ctrlStartWallChanges = async () => {
     const strings = base.getStrings();
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 15, 6);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 14);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 8);
-    gameView.changeWalls(strings.remove, strings.borderRight, 4, 21, 28);
-    gameView.changeWalls(strings.remove, strings.borderTop, 14);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 5, 22, 29);
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 28], [strings.borderRight, 5, 14], [strings.borderBottom, 22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 8], [strings.borderRight, 4, 21, 28], [strings.borderTop, 14], [strings.borderLeft, 5, 22, 29]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 27, 34, 35);
-    gameView.changeWalls(strings.add, strings.borderLeft, 4);
-    gameView.changeWalls(strings.add, strings.borderRight, 21, 3);
-    gameView.changeWalls(strings.add, strings.borderBottom, 21, 28, 29);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 5, 34, 21);
-    gameView.changeWalls(strings.remove, strings.borderTop, 14);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 6, 35);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 4], [strings.borderTop, 27, 34, 35], [strings.borderRight, 21, 3], [strings.borderBottom, 21, 28, 29]);
+
+    gameView.changeWallsLoopRemove([strings.borderRight, 27, 5, 34, 21], [strings.borderTop, 14], [strings.borderLeft, 28, 6, 35]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 6, 28);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 27);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 21);
-    gameView.changeWalls(strings.remove, strings.borderRight, 17);
-    gameView.changeWalls(strings.remove, strings.borderTop, 27);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 18);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 6, 28], [strings.borderTop, 28], [strings.borderRight, 5, 27], [strings.borderBottom, 22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 21], [strings.borderRight, 17], [strings.borderTop, 27], [strings.borderLeft, 18]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 26, 18);
-    gameView.changeWalls(strings.add, strings.borderRight, 25, 17);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderRight, 5);
-    gameView.changeWalls(strings.remove, strings.borderTop, 34);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 6);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 26, 18], [strings.borderRight, 25, 17]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 28], [strings.borderRight, 5], [strings.borderTop, 34], [strings.borderLeft, 6]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 34);
-    gameView.changeWalls(strings.add, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 19);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 26);
-    gameView.changeWalls(strings.remove, strings.borderTop, 25);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 27);
+
+    gameView.changeWallsLoopAdd([strings.borderTop, 34], [strings.borderBottom, 28]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 19], [strings.borderRight, 27, 26], [strings.borderTop, 25], [strings.borderLeft, 28, 27]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 15, 6);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 14);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 8);
-    gameView.changeWalls(strings.remove, strings.borderRight, 4, 21, 28);
-    gameView.changeWalls(strings.remove, strings.borderTop, 14);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 5, 22, 29);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 28], [strings.borderRight, 5, 14], [strings.borderBottom, 22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 8], [strings.borderRight, 4, 21, 28], [strings.borderTop, 14], [strings.borderLeft, 5, 22, 29]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 27, 34, 35);
-    gameView.changeWalls(strings.add, strings.borderLeft, 4);
-    gameView.changeWalls(strings.add, strings.borderRight, 21, 3);
-    gameView.changeWalls(strings.add, strings.borderBottom, 21, 28, 29);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 5, 34, 21);
-    gameView.changeWalls(strings.remove, strings.borderTop, 14);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 6, 35);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 27, 35], [strings.borderRight, 21, 3], [strings.borderBottom, 21, 28, 29]);
+
+    gameView.changeWallsLoopRemove([strings.borderRight, 27, 5, 34, 21], [strings.borderTop, 14], [strings.borderLeft, 28, 6, 35]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 6, 28);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 27);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 21);
-    gameView.changeWalls(strings.remove, strings.borderRight, 17);
-    gameView.changeWalls(strings.remove, strings.borderTop, 27);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 18);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6, 28], [strings.borderTop, 28], [strings.borderRight, 5, 27], [strings.borderBottom, 22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 21], [strings.borderRight, 17], [strings.borderTop, 27], [strings.borderLeft, 18]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 26, 18);
-    gameView.changeWalls(strings.add, strings.borderRight, 25, 17);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderRight, 5);
-    gameView.changeWalls(strings.remove, strings.borderTop, 34);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 6);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 26, 18], [strings.borderRight, 25, 17]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 28], [strings.borderRight, 5], [strings.borderTop, 34], [strings.borderLeft, 6]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 34);
-    gameView.changeWalls(strings.add, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 19);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 26);
-    gameView.changeWalls(strings.remove, strings.borderTop, 25);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 27);
+
+    gameView.changeWallsLoopAdd([strings.borderTop, 34], [strings.borderBottom, 28]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 19], [strings.borderRight, 27, 26], [strings.borderTop, 25], [strings.borderLeft, 28, 27]);
 
 };
 
 const ctrlStartGame = async () => {
-        //1. create new player using player object from getPlayer method
-        const newPlayer = gameView.getPlayer();
-        state.player = new Player(newPlayer.name, newPlayer.character);
+    //1. create new player using player object from getPlayer method
+    const newPlayer = gameView.getPlayer();
+    state.player = new Player(newPlayer.name, newPlayer.character);
 
-        //2. create new game and leaderboard
-        state.game = new Game();
+    //2. create new game and leaderboard
+    state.game = new Game();
 
-        //3. remove users input 
-        gameView.removeUsersInput();
+    //3. remove users input 
+    gameView.removeUsersInput();
 
-        //4. Insert character into start position of maze
-        gameView.renderCharacter(state.player.character);
+    //4. Insert character into start position of maze
+    gameView.renderCharacter(state.player.character);
 
-        //5. begin and display countdown
-        countDown();
-        gameView.renderCountdown(timer);
+    //5. begin and display countdown
+    countDown();
+    gameView.renderCountdown(timer);
 
-        //6. await for countdown to finish and display Go 
-        await delay(3000);
-        gameView.renderGo();
+    //6. await for countdown to finish and display Go 
+    await delay(3000);
+    gameView.renderGo();
 
-        //7. remove go
-        await delay(1500);
-        gameView.removeCountdown();
+    //7. remove go
+    await delay(1500);
+    gameView.removeCountdown();
 
-        //8. get the start time for new game
-        state.game.getStartTime();
+    //8. get the start time for new game
+    state.game.getStartTime();
 
-        //9. allow user to move
-        document.addEventListener("keydown", ctrlPlayerMovement);
+    //9. allow user to move
+    document.addEventListener("keydown", ctrlPlayerMovement);
 
-        //10. start wall changes
-        ctrlStartWallChanges();
+    //10. start wall changes
+    ctrlStartWallChanges();
 
 };
 
