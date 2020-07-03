@@ -77,7 +77,7 @@ const ctrlStartWallChanges = async () => {
     }
     gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 28], [strings.borderRight, 5, 14], [strings.borderBottom, 22]);
 
-    gameView.changeWallsLoopRemove([strings.borderBottom, 8], [strings.borderRight, 4, 21, 28], [strings.borderTop, 14], [strings.borderLeft, 5, 22, 29])
+    gameView.changeWallsLoopRemove([strings.borderBottom, 8], [strings.borderRight, 4, 21, 28], [strings.borderTop, 14], [strings.borderLeft, 5, 22, 29]);
 
     await delay(1500);
     if (isPlayerFinished) {
@@ -86,95 +86,79 @@ const ctrlStartWallChanges = async () => {
 
     gameView.changeWallsLoopAdd([strings.borderLeft, 4], [strings.borderTop, 27, 34, 35], [strings.borderRight, 21, 3], [strings.borderBottom, 21, 28, 29]);
 
-    gameView.changeWallsLoopRemove([strings.borderRight, 27, 5, 34, 21], [strings.borderTop, 14], [strings.borderLeft, 28, 6, 35])
+    gameView.changeWallsLoopRemove([strings.borderRight, 27, 5, 34, 21], [strings.borderTop, 14], [strings.borderLeft, 28, 6, 35]);
 
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 6, 28);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 27);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 21);
-    gameView.changeWalls(strings.remove, strings.borderRight, 17);
-    gameView.changeWalls(strings.remove, strings.borderTop, 27);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 18);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 6, 28], [strings.borderTop, 28], [strings.borderRight, 5, 27], [strings.borderBottom,  22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 21], [strings.borderRight, 17], [strings.borderTop, 27], [strings.borderLeft, 18]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 26, 18);
-    gameView.changeWalls(strings.add, strings.borderRight, 25, 17);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderRight, 5);
-    gameView.changeWalls(strings.remove, strings.borderTop, 34);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 6);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 26, 18], [strings.borderRight, 25, 17]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 28], [strings.borderRight, 5], [strings.borderTop, 34], [strings.borderLeft, 6]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 34);
-    gameView.changeWalls(strings.add, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 19);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 26);
-    gameView.changeWalls(strings.remove, strings.borderTop, 25);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 27);
+
+    gameView.changeWallsLoopAdd([strings.borderTop, 34], [strings.borderBottom, 28]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 19], [strings.borderRight, 27, 26], [strings.borderTop, 25], [strings.borderLeft, 28, 27]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 15, 6);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 14);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 8);
-    gameView.changeWalls(strings.remove, strings.borderRight, 4, 21, 28);
-    gameView.changeWalls(strings.remove, strings.borderTop, 14);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 5, 22, 29);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 28], [strings.borderRight, 5, 14], [strings.borderBottom,  22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 8], [strings.borderRight, 4, 21, 28], [strings.borderTop, 14], [strings.borderLeft, 5, 22, 29]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 27, 34, 35);
-    gameView.changeWalls(strings.add, strings.borderLeft, 4);
-    gameView.changeWalls(strings.add, strings.borderRight, 21, 3);
-    gameView.changeWalls(strings.add, strings.borderBottom, 21, 28, 29);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 5, 34, 21);
-    gameView.changeWalls(strings.remove, strings.borderTop, 14);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 6, 35);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 27, 35], [strings.borderRight, 21, 3], [strings.borderBottom, 21, 28, 29]);
+
+    gameView.changeWallsLoopRemove([strings.borderRight, 27, 5, 34, 21], [strings.borderTop, 14], [strings.borderLeft, 28, 6, 35]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 6, 28);
-    gameView.changeWalls(strings.add, strings.borderTop, 28);
-    gameView.changeWalls(strings.add, strings.borderRight, 5, 27);
-    gameView.changeWalls(strings.add, strings.borderBottom, 22);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 21);
-    gameView.changeWalls(strings.remove, strings.borderRight, 17);
-    gameView.changeWalls(strings.remove, strings.borderTop, 27);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 18);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6, 28], [strings.borderTop, 28], [strings.borderRight, 5, 27], [strings.borderBottom, 22]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 21], [strings.borderRight, 17], [strings.borderTop, 27], [strings.borderLeft, 18]);
+
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderLeft, 26, 18);
-    gameView.changeWalls(strings.add, strings.borderRight, 25, 17);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderRight, 5);
-    gameView.changeWalls(strings.remove, strings.borderTop, 34);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 6);
+
+    gameView.changeWallsLoopAdd([strings.borderLeft, 26, 18], [strings.borderRight, 25, 17]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 28], [strings.borderRight, 5], [strings.borderTop, 34], [strings.borderLeft, 6]);
+    
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
-    gameView.changeWalls(strings.add, strings.borderTop, 34);
-    gameView.changeWalls(strings.add, strings.borderBottom, 28);
-    gameView.changeWalls(strings.remove, strings.borderBottom, 19);
-    gameView.changeWalls(strings.remove, strings.borderRight, 27, 26);
-    gameView.changeWalls(strings.remove, strings.borderTop, 25);
-    gameView.changeWalls(strings.remove, strings.borderLeft, 28, 27);
+
+    gameView.changeWallsLoopAdd([strings.borderTop, 34], [strings.borderBottom,  28]);
+
+    gameView.changeWallsLoopRemove([strings.borderBottom, 19], [strings.borderRight, 27, 26], [strings.borderTop, 25], [strings.borderLeft, 28, 27]);
 
 };
 
