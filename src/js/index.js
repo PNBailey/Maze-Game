@@ -93,7 +93,7 @@ const ctrlStartWallChanges = async () => {
         return;
     }
 
-    gameView.changeWallsLoopAdd([strings.borderLeft, 6, 28], [strings.borderTop, 28], [strings.borderRight, 5, 27], [strings.borderBottom, 22]);
+    gameView.changeWallsLoopAdd([strings.borderLeft, 6, 28], [strings.borderTop, 28], [strings.borderRight, 5, 27], [strings.borderBottom,  22]);
 
     gameView.changeWallsLoopRemove([strings.borderBottom, 21], [strings.borderRight, 17], [strings.borderTop, 27], [strings.borderLeft, 18]);
 
@@ -120,7 +120,7 @@ const ctrlStartWallChanges = async () => {
         return;
     }
 
-    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 28], [strings.borderRight, 5, 14], [strings.borderBottom, 22]);
+    gameView.changeWallsLoopAdd([strings.borderLeft, 15, 6], [strings.borderTop, 28], [strings.borderRight, 5, 14], [strings.borderBottom,  22]);
 
     gameView.changeWallsLoopRemove([strings.borderBottom, 8], [strings.borderRight, 4, 21, 28], [strings.borderTop, 14], [strings.borderLeft, 5, 22, 29]);
 
@@ -150,13 +150,13 @@ const ctrlStartWallChanges = async () => {
     gameView.changeWallsLoopAdd([strings.borderLeft, 26, 18], [strings.borderRight, 25, 17]);
 
     gameView.changeWallsLoopRemove([strings.borderBottom, 28], [strings.borderRight, 5], [strings.borderTop, 34], [strings.borderLeft, 6]);
-
+    
     await delay(1500);
     if (isPlayerFinished) {
         return;
     }
 
-    gameView.changeWallsLoopAdd([strings.borderTop, 34], [strings.borderBottom, 28]);
+    gameView.changeWallsLoopAdd([strings.borderTop, 34], [strings.borderBottom,  28]);
 
     gameView.changeWallsLoopRemove([strings.borderBottom, 19], [strings.borderRight, 27, 26], [strings.borderTop, 25], [strings.borderLeft, 28, 27]);
 
